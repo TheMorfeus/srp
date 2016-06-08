@@ -1,12 +1,11 @@
-package net.themorfeus.perspective.world;
+package net.themorfeus.srp.world;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g3d.decals.Decal;
 import com.badlogic.gdx.graphics.g3d.decals.DecalBatch;
-import com.sun.org.apache.bcel.internal.generic.POP;
-import net.themorfeus.perspective.MainGame;
-import net.themorfeus.perspective.Util;
+import net.themorfeus.srp.MainGame;
+import net.themorfeus.srp.Util;
 
 import java.util.ArrayList;
 import java.util.Random;

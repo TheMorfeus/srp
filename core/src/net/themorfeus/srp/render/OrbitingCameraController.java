@@ -1,4 +1,4 @@
-package net.themorfeus.perspective.render;
+package net.themorfeus.srp.render;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -6,7 +6,6 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
-import net.themorfeus.perspective.Util;
 
 /**
  * Basic class that allows the camera to orbit around a given pivot point.

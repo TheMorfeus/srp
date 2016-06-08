@@ -1,4 +1,4 @@
-package net.themorfeus.perspective.world;
+package net.themorfeus.srp.world;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -7,8 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g3d.decals.Decal;
 import com.badlogic.gdx.graphics.g3d.decals.DecalBatch;
 import com.badlogic.gdx.math.Vector3;
-import net.themorfeus.perspective.MainGame;
-import net.themorfeus.perspective.Util;
+import net.themorfeus.srp.MainGame;
 
 import java.util.Random;
 

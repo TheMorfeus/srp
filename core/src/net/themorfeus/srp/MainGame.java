@@ -1,19 +1,16 @@
-package net.themorfeus.perspective;
+package net.themorfeus.srp;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.*;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.g3d.decals.CameraGroupStrategy;
-import com.badlogic.gdx.graphics.g3d.decals.DecalBatch;
-import com.badlogic.gdx.graphics.g3d.decals.GroupStrategy;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import net.themorfeus.perspective.game.WorldScreen;
-import net.themorfeus.perspective.render.*;
-import net.themorfeus.perspective.render.shaders.*;
-import net.themorfeus.perspective.world.World;
+import net.themorfeus.srp.game.WorldScreen;
+import net.themorfeus.srp.render.DebugDisplay;
+import net.themorfeus.srp.render.FrameBufferManager;
+import net.themorfeus.srp.render.OrbitingCameraController;
+import net.themorfeus.srp.render.shaders.*;
 
 public class MainGame extends Game {
 

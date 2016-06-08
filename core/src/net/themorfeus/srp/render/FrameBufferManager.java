@@ -1,4 +1,4 @@
-package net.themorfeus.perspective.render;
+package net.themorfeus.srp.render;
 
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 

@@ -1,4 +1,4 @@
-package net.themorfeus.perspective;
+package net.themorfeus.srp;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.*;
@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
-import net.themorfeus.perspective.render.FrameBufferManager;
-import net.themorfeus.perspective.render.shaders.ShaderHelper;
+import net.themorfeus.srp.render.FrameBufferManager;
+import net.themorfeus.srp.render.shaders.ShaderHelper;
 
 import java.util.HashMap;
 import java.util.Random;

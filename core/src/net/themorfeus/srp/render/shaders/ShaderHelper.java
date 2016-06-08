@@ -1,4 +1,4 @@
-package net.themorfeus.perspective.render.shaders;
+package net.themorfeus.srp.render.shaders;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;

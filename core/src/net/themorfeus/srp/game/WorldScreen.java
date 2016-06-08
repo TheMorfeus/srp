@@ -1,4 +1,4 @@
-package net.themorfeus.perspective.game;
+package net.themorfeus.srp.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -6,9 +6,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g3d.decals.CameraGroupStrategy;
 import com.badlogic.gdx.graphics.g3d.decals.DecalBatch;
 import com.badlogic.gdx.graphics.g3d.decals.GroupStrategy;
-import net.themorfeus.perspective.MainGame;
-import net.themorfeus.perspective.render.NoBleedingCameraGroupStrategy;
-import net.themorfeus.perspective.world.World;
+import net.themorfeus.srp.MainGame;
+import net.themorfeus.srp.render.NoBleedingCameraGroupStrategy;
+import net.themorfeus.srp.world.World;
 
 /**
  * Created by morf on 07.06.2016.

@@ -1,4 +1,4 @@
-package net.themorfeus.perspective.world;
+package net.themorfeus.srp.world;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -13,9 +13,9 @@ import com.badlogic.gdx.graphics.g3d.decals.DecalBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Align;
-import net.themorfeus.perspective.MainGame;
-import net.themorfeus.perspective.Util;
-import net.themorfeus.perspective.render.FrameBufferManager;
+import net.themorfeus.srp.MainGame;
+import net.themorfeus.srp.Util;
+import net.themorfeus.srp.render.FrameBufferManager;
 
 /**
  * Created by morf on 02.06.2016.

@@ -1,19 +1,19 @@
-package net.themorfeus.perspective.render.shaders;
+package net.themorfeus.srp.render.shaders;
 
 import com.badlogic.gdx.math.Matrix4;
 
 /**
  * Created by morf on 05.06.2016.
  */
-public class PassthroughShader extends ShaderHelper{
+public class VBlurShader extends ShaderHelper{
 
     private int u_texture;
     private int u_projView;
 
     private Matrix4 projectionMatrix;
 
-    public PassthroughShader() {
-        super("passthrough");
+    public VBlurShader() {
+        super("vertical_blur", "vblur", "blur");
     }
 
     @Override
@@ -24,10 +24,13 @@ public class PassthroughShader extends ShaderHelper{
         this.projectionMatrix = new Matrix4();
     }
 
+
     @Override
     public void begin() {
         program.begin();
-        program.setUniformMatrix(u_projView, new Matrix4());
+
+        program.setUniformMatrix(u_projView, projectionMatrix);
         program.setUniformi(u_texture, textureID);
     }
+
 }

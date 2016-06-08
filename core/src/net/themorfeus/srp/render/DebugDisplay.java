@@ -1,12 +1,8 @@
-package net.themorfeus.perspective.render;
+package net.themorfeus.srp.render;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import net.themorfeus.perspective.Util;
-
-import java.util.Random;
+import net.themorfeus.srp.Util;
 
 /**
  * Created by morf on 05.06.2016.

@@ -14,7 +14,7 @@
  * limitations under the License.
  ******************************************************************************/
 
-package net.themorfeus.perspective.render;
+package net.themorfeus.srp.render;
 
 import java.util.Comparator;
 
