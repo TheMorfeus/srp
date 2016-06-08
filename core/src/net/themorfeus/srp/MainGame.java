@@ -12,6 +12,9 @@ import net.themorfeus.srp.render.FrameBufferManager;
 import net.themorfeus.srp.render.OrbitingCameraController;
 import net.themorfeus.srp.render.shaders.*;
 
+/**
+ * Main engine class
+ * */
 public class MainGame extends Game {
 
     /**
@@ -19,25 +22,8 @@ public class MainGame extends Game {
      * */
     private Vector3 tempV3 = new Vector3();
 
-    /**
-     * Camera field
-     * */
     private Camera camera;
-
-    /**
-     * Camera controller
-     * */
     private OrbitingCameraController cameraController;
-
-    /**
-     * Wheter the game is currently fullscreen or not
-     * */
-    private boolean fullscreen;
-
-    /**
-     * Wheter the game is vertically synchronized or not
-     * */
-    private boolean vSync;
 
     /**
      * Stage for UI related things
@@ -67,6 +53,9 @@ public class MainGame extends Game {
     private HBlurShader hBlurShader;
     private VBlurShader vBlurShader;
 
+    private boolean fullscreen;
+    private boolean vsync;
+
     /**
      * Debug variables
      * */
@@ -76,7 +65,7 @@ public class MainGame extends Game {
     /**
      * Main game screen
      * */
-    private WorldScreen worldScreen;
+    private Screen gameScreen;
 
     @Override
     public void create () {
@@ -150,8 +139,8 @@ public class MainGame extends Game {
      * Sets up the game screen
      * */
     private void setupScreen(){
-        worldScreen = new WorldScreen(this);
-        this.setScreen(worldScreen);
+        gameScreen = new WorldScreen(this);
+        this.setScreen(gameScreen);
     }
 
     /**
@@ -173,11 +162,14 @@ public class MainGame extends Game {
         fxaaShader.setAntialiasingFactor(cameraController.getOrbitRadius() / 13.75f);
 
         /**
-         * Rendering the scene
+         * Rendering the game screen
          * */
         renderGameToFrameBuffer(screenFrameBuffer);
         renderFrameBufferUsingShader(screenFrameBuffer, fxaa ? fxaaShader : null, hBlurShader, vBlurShader);
 
+        /**
+         * Rendering the UI
+         * */
         renderUIToFrameBuffer(screenFrameBuffer);
         renderFrameBufferUsingShader(screenFrameBuffer);
     }
@@ -222,7 +214,7 @@ public class MainGame extends Game {
      * Renders the given framebuffer using the given post-processing shader
      * */
     private void renderFrameBufferUsingShader(FrameBuffer fbo, ShaderHelper... shader) {
-        if(shader.length == 0){
+        if(shader == null || shader.length == 0){
 
             renderTextureUsingShader(fbo.getColorBufferTexture(), passthroughShader);
 
@@ -314,8 +306,8 @@ public class MainGame extends Game {
      * @param vs wheter the application should be vertically synchronized or not
      * */
     private void setVSync(boolean vs){
-        this.vSync = vs;
-        Gdx.graphics.setVSync(vSync);
+        this.vsync = vs;
+        Gdx.graphics.setVSync(vsync);
     }
 
     /**
@@ -324,7 +316,7 @@ public class MainGame extends Game {
     private void debug(){
         Gdx.graphics.setTitle(Gdx.graphics.getFramesPerSecond() + " FPS, anim quality: " + ((int) Math.floor(cameraController.animSmoothing)));
         debugDisplay.update("fps: " + Gdx.graphics.getFramesPerSecond() +
-                "\nvSync: " + (vSync?"on":"off") +
+                "\nvsync: " + (vsync ?"on":"off") +
                 "\nfxaa: " + (fxaa?"on":"off"));
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.P)){

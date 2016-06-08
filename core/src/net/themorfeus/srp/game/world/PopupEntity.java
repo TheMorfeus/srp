@@ -1,4 +1,4 @@
-package net.themorfeus.srp.world;
+package net.themorfeus.srp.game.world;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -17,9 +17,6 @@ import net.themorfeus.srp.MainGame;
 import net.themorfeus.srp.Util;
 import net.themorfeus.srp.render.FrameBufferManager;
 
-/**
- * Created by morf on 02.06.2016.
- */
 public class PopupEntity extends Entity{
 
     private static final int POPUP_WIDTH = 2048, POPUP_HEIGHT = 1024;

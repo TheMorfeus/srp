@@ -1,4 +1,4 @@
-package net.themorfeus.srp.world;
+package net.themorfeus.srp.game.world;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -10,9 +10,6 @@ import net.themorfeus.srp.Util;
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- * Created by morf on 02.06.2016.
- */
 public class World {
 
     private MainGame gameInstance;

@@ -33,7 +33,7 @@ import com.badlogic.gdx.utils.Pool;
 
 
 /**
- * Camera group strategy that disables one decals clearing whole portions of others.
+ * Camera group strategy that disables blending, which causes severe texture bleeding.
  * */
 public class NoBleedingCameraGroupStrategy extends CameraGroupStrategy{
 	public NoBleedingCameraGroupStrategy(Camera camera) {

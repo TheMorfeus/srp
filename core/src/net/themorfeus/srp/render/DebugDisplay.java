@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import net.themorfeus.srp.Util;
 
 /**
- * Created by morf on 05.06.2016.
+ * Basic debug info display
  */
 public class DebugDisplay {
 

@@ -1,4 +1,4 @@
-package net.themorfeus.srp.world;
+package net.themorfeus.srp.game.world;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -11,9 +11,7 @@ import net.themorfeus.srp.MainGame;
 
 import java.util.Random;
 
-/**
- * Created by morf on 02.06.2016.
- */
+
 public class Entity {
 
     protected MainGame gameInstance;

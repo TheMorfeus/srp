@@ -8,11 +8,9 @@ import com.badlogic.gdx.graphics.g3d.decals.DecalBatch;
 import com.badlogic.gdx.graphics.g3d.decals.GroupStrategy;
 import net.themorfeus.srp.MainGame;
 import net.themorfeus.srp.render.NoBleedingCameraGroupStrategy;
-import net.themorfeus.srp.world.World;
+import net.themorfeus.srp.game.world.World;
 
-/**
- * Created by morf on 07.06.2016.
- */
+
 public class WorldScreen implements Screen{
 
     private MainGame gameInstance;
