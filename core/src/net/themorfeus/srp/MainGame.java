@@ -73,7 +73,6 @@ public class MainGame extends Game {
         setupRendering();
         setupPostProcessing();
         setupInput();
-
         setupScreen();
     }
 
