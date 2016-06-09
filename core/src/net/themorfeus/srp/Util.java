@@ -54,6 +54,7 @@ public class Util {
      * Lookup for less memory usage
      */
     private static HashMap<String, Float[]> colorCache = new HashMap<String, Float[]>();
+
     /**
     * @return an array of floats (R, G, B) of the color written in hex format
     */
@@ -79,9 +80,9 @@ public class Util {
         float green = (color & 0xffff)>>8;
         float blue = (color) & 0xff;
 
-        red /= 255;
-        green /= 255;
-        blue /= 255;
+        red /= 255f;
+        green /= 255f;
+        blue /= 255f;
         colorCache.put(hex, new Float[]{red, green, blue});
         return new float[]{red, green, blue};
     }

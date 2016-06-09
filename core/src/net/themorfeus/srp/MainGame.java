@@ -138,6 +138,7 @@ public class MainGame extends Game {
      * Sets up the game screen
      * */
     private void setupScreen(){
+        //
         gameScreen = new WorldScreen(this);
         this.setScreen(gameScreen);
     }
