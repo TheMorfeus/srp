@@ -17,6 +17,7 @@ public class ModelBatchManager {
 
     public ModelBatchManager(ModelBatch b){
         this.modelBatch = b;
+        renderStack = new Stack<RenderableInfo>();
     }
 
     public void addRenderable(Renderable renderable){

@@ -23,32 +23,32 @@ public abstract class ShaderHelper implements Disposable {
         ShaderProgram.pedantic = false;
     }
 
-    private ShaderProgram program;
+    ShaderProgram program;
 
     /**
      *  Human readable shader name
      * */
-    protected String name;
+    String name;
 
     /**
      *  Vertex shader name (without file extension)
      * */
-    protected String vertName;
+    private String vertName;
 
     /**
      *  Fragment shader name (without file extension)
      * */
-    protected String fragName;
+    private String fragName;
 
     /**
      * Texture ID which can be passed into sampler2D. Used for post-processing shaders.
      * */
-    protected int textureID;
+    int textureID;
 
     /**
      * @param name Shader name. Will be used as human readable name, vertex and fragment shaders name.
      * */
-    public ShaderHelper(String name){
+    ShaderHelper(String name){
         this(name, name, name);
     }
     /**
@@ -56,7 +56,7 @@ public abstract class ShaderHelper implements Disposable {
      * @param vertName Vertex shader filename (without file extension)
      * @param fragName Fragment shader filename (without file extension)
      * */
-    public ShaderHelper(String name, String vertName, String fragName){
+    ShaderHelper(String name, String vertName, String fragName){
         createNewProgram(name, vertName, fragName);
     }
 
