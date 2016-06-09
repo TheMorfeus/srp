@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import net.themorfeus.srp.game.WorldScreen;
 import net.themorfeus.srp.render.DebugDisplay;
 import net.themorfeus.srp.render.FrameBufferManager;
 import net.themorfeus.srp.render.OrbitingCameraController;
@@ -137,9 +138,8 @@ public class MainGame extends Game {
      * Sets up the game screen
      * */
     private void setupScreen(){
-        /**
-         * Game stuff goes here
-         * */
+        gameScreen = new WorldScreen(this);
+        this.setScreen(gameScreen);
     }
 
     /**
