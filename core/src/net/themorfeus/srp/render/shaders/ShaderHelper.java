@@ -8,6 +8,10 @@ import com.badlogic.gdx.utils.Disposable;
  *  Shader helper for easier rendering, and less clutter in the rest of the code
  *  Shaders should be placed in running directory in "shaders" folder.
  *  They should have extensions of ".v" for vertex shader, and ".f" for fragment shader
+ *
+ *  COULD technically be replaced with {@link com.badlogic.gdx.graphics.g3d.Shader}, but it might be an overkill for post-processing
+ *  At best, its to-do
+ *
  *  @author themorfeus
  * */
 public abstract class ShaderHelper implements Disposable {
@@ -19,7 +23,7 @@ public abstract class ShaderHelper implements Disposable {
         ShaderProgram.pedantic = false;
     }
 
-    protected ShaderProgram program;
+    private ShaderProgram program;
 
     /**
      *  Human readable shader name
@@ -62,7 +66,7 @@ public abstract class ShaderHelper implements Disposable {
      * @param vertName Vertex shader filename (without file extension)
      * @param fragName Fragment shader filename (without file extension)
      * */
-    protected void createNewProgram(String name, String vertName, String fragName){
+    private void createNewProgram(String name, String vertName, String fragName){
 
         this.name = name;
 

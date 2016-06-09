@@ -105,7 +105,6 @@ public class MainGame extends Game {
      * Sets up post processing projection matrix, frame buffer, screen mesh, shader and its uniforms.
      * */
     private void setupPostProcessing(){
-
         screenFrameBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
         multipassFrameBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
         this.screenQuad = Util.createFullScreenQuad();
@@ -120,8 +119,8 @@ public class MainGame extends Game {
 
         hBlurShader.setup();
         vBlurShader.setup();
-
     }
+
     /**
      * Sets up input
      * */
