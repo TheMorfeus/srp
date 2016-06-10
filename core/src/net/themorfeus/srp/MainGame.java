@@ -194,8 +194,6 @@ public class MainGame extends Game {
      * */
     private void renderGameToFrameBuffer(FrameBuffer fbo){
         FrameBufferManager.begin(fbo);{
-            Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
-            Gdx.gl20.glClearColor(0, 0, 0, 0);
             renderGame();
         }FrameBufferManager.end();
     }
