@@ -1,11 +1,14 @@
 package net.themorfeus.srp;
 
 import com.badlogic.gdx.*;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.g3d.particles.ResourceData;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import net.themorfeus.srp.game.LoadingScreen;
 import net.themorfeus.srp.game.WorldScreen;
 import net.themorfeus.srp.render.DebugDisplay;
 import net.themorfeus.srp.render.FrameBufferManager;
@@ -69,11 +72,16 @@ public class MainGame extends Game {
 
     @Override
     public void create () {
+        setupAssets();
         setupCamera();
         setupRendering();
         setupPostProcessing();
         setupInput();
         setupScreen();
+    }
+
+    public void setupAssets(){
+        Resources.load();
     }
 
     /**
@@ -137,8 +145,13 @@ public class MainGame extends Game {
      * Sets up the game screen
      * */
     private void setupScreen(){
-        gameScreen = new WorldScreen(this);
+        gameScreen = new LoadingScreen(this);
         this.setScreen(gameScreen);
+
+        System.out.println(this.getScreen());
+
+        /*new WorldScreen(this);
+        this.setScreen(gameScreen);*/
     }
 
     /**
@@ -184,6 +197,8 @@ public class MainGame extends Game {
      * */
     private void renderGameToFrameBuffer(FrameBuffer fbo){
         FrameBufferManager.begin(fbo);{
+            Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            Gdx.gl20.glClearColor(0, 0, 0, 0);
             renderGame();
         }FrameBufferManager.end();
     }
@@ -338,6 +353,10 @@ public class MainGame extends Game {
         return camera;
     }
 
+    public Stage getStage() {
+        return stage;
+    }
+
     public OrbitingCameraController getCameraController(){
         return cameraController;
     }
@@ -356,14 +375,23 @@ public class MainGame extends Game {
     }
 
     @Override
+    public void resume() {
+        super.resume();
+        Resources.load();
+    }
+
+    @Override
     public void dispose(){
         super.dispose();
         screenFrameBuffer.dispose();
+        multipassFrameBuffer.dispose();
         stage.dispose();
         screenQuad.dispose();
         fxaaShader.dispose();
         passthroughShader.dispose();
         hBlurShader.dispose();
         vBlurShader.dispose();
+
+        Resources.dispose();
     }
 }
