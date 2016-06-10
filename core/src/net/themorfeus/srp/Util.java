@@ -50,6 +50,10 @@ public class Util {
         return fonts.get(size);
     }
 
+    public static void clearFonts(){
+        fonts.clear();
+    }
+
     /**
      * Lookup for less memory usage
      */

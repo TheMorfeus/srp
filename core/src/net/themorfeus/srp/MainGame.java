@@ -370,6 +370,11 @@ public class MainGame extends Game {
     }
 
     @Override
+    public void pause(){
+        Util.clearFonts();
+    }
+
+    @Override
     public void resume() {
         super.resume();
         Resources.load();
