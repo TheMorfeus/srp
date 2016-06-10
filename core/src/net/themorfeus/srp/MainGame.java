@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import net.themorfeus.srp.game.WorldScreen;
 import net.themorfeus.srp.logic.LoadingScreen;
 import net.themorfeus.srp.render.DebugDisplay;
 import net.themorfeus.srp.render.FrameBufferManager;
@@ -149,6 +150,19 @@ public class MainGame extends Game {
 
         /*new WorldScreen(this);
         this.setScreen(gameScreen);*/
+    }
+
+    /**
+     * Called by LoadingScreen when resources have been loaded.
+     * */
+    public void resourcesLoaded(){
+        //Setting to null, so that it doesn't throw error on hide() as we will dispose of the current screen.
+        this.setScreen(null);
+        //Loading screen is visible only once, so we can dispose of it now
+        gameScreen.dispose();
+
+        this.gameScreen = new WorldScreen(this);
+        this.setScreen(gameScreen);
     }
 
     /**

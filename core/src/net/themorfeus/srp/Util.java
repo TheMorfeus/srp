@@ -51,8 +51,13 @@ public class Util {
     }
 
     public static void clearFonts(){
+        for(BitmapFont f : fonts.values()){
+            f.dispose();
+        }
         fonts.clear();
     }
+
+
 
     /**
      * Lookup for less memory usage
