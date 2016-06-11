@@ -5,6 +5,10 @@ import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g3d.Material;
+import com.badlogic.gdx.graphics.g3d.Model;
+import com.badlogic.gdx.graphics.g3d.utils.MeshPartBuilder;
+import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import net.themorfeus.srp.render.FrameBufferManager;
 import net.themorfeus.srp.render.shaders.ShaderHelper;
@@ -186,5 +190,26 @@ public class Util {
 
         mesh.setVertices( verts );
         return mesh;
+    }
+
+    private static ModelBuilder modelBuilder;
+
+    public static Model createPlaneModel(final float width, final float height, Material material, final float u1, final float v1, final float u2, final float v2) {
+
+        if(modelBuilder==null)modelBuilder = new ModelBuilder();
+
+        modelBuilder.begin();
+        MeshPartBuilder bPartBuilder = modelBuilder.part("rect", GL20.GL_TRIANGLES, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates, material);
+        //NOTE ON TEXTURE REGION, MAY FILL OTHER REGIONS, USE GET region.getU() and so on
+        bPartBuilder.setUVRange(u1, v1, u2, v2);
+        bPartBuilder.rect(
+                -(width*0.5f), -(height*0.5f), 0,
+                (width*0.5f), -(height*0.5f), 0,
+                (width*0.5f), (height*0.5f), 0,
+                -(width*0.5f), (height*0.5f), 0,
+                0, 0, -1);
+
+
+        return (modelBuilder.end());
     }
 }
