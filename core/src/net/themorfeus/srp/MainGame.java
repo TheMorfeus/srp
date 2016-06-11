@@ -340,7 +340,8 @@ public class MainGame extends Game {
         Gdx.graphics.setTitle(Gdx.graphics.getFramesPerSecond() + " FPS, anim quality: " + ((int) Math.floor(cameraController.animSmoothing)));
         debugDisplay.update("fps: " + Gdx.graphics.getFramesPerSecond() +
                 "\nvsync: " + (vsync ?"on":"off") +
-                "\nfxaa: " + (fxaa?"on":"off"));
+                "\nfxaa: " + (fxaa?"on":"off") +
+                "\ngpu: " + Gdx.gl.glGetString(GL20.GL_RENDERER));
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.P)){
             fxaa = !fxaa;

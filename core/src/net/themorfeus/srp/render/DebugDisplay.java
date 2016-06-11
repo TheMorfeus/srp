@@ -21,7 +21,7 @@ public class DebugDisplay {
         style.font = Util.getFont(10);
 
         debugInfo = new Label("hello\nhi", style);
-        debugInfo.setPosition(10,10);
+        debugInfo.setPosition(10,30);
 
         stage.addActor(debugInfo);
     }
