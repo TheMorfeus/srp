@@ -20,7 +20,7 @@ public class ModelBatchManager {
         renderStack = new Stack<RenderableInfo>();
     }
 
-    public void addRenderable(Renderable renderable){
+    public void add(Renderable renderable){
         RenderableInfo info = new RenderableInfo();
 
         info.renderable = renderable;
@@ -28,7 +28,7 @@ public class ModelBatchManager {
         renderStack.push(info);
     }
 
-    public void addProvider(RenderableProvider provider, Environment environment, Shader shader){
+    public void add(RenderableProvider provider, Environment environment, Shader shader){
         RenderableInfo info = new RenderableInfo();
 
         info.provider = provider;
