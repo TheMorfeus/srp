@@ -32,15 +32,15 @@ public class LoadingScreen extends ScreenAdapter{
     }
 
     public void render(float delta){
-        Resources.manager.update();
+        Resources.getInstance().manager.update();
 
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl20.glClearColor(0, 0, 0, 1);
 
-        loadingLabel.setText("Loading: " + (int)(Resources.manager.getProgress() * 100) + "%");
+        loadingLabel.setText("Loading: " + (int)(Resources.getInstance().manager.getProgress() * 100) + "%");
         loadingLabel.setPosition(gameInstance.getStage().getWidth()/2 - loadingLabel.getWidth()/2, gameInstance.getStage().getHeight()/2 - loadingLabel.getHeight()/2);
 
-        if(Resources.isLoaded()){
+        if(Resources.getInstance().isLoaded()){
             gameInstance.resourcesLoaded();
             loadingLabel.remove();
         }

@@ -10,27 +10,29 @@ import com.badlogic.gdx.graphics.g3d.Model;
  */
 public class Resources{
 
-    //technically this shoudln't be static. But it should be managed well enough in MainGame class, that SRP can get away with it
-    public static AssetManager manager;
+    private static Resources instance;
 
-    public static final String TILESET = "tileset.png";
+    //technically this shoudln't be . But it should be managed well enough in MainGame class, that SRP can get away with it
+    public AssetManager manager;
 
-    public static final String SHITWADDUP = "img/shitwaddup.png";
-    public static final String OBAMA  = "img/test.png";
-    public static final String CHARIZARD  = "img/char.png";
-    public static final String HIPPO  = "img/hippo.png";
-    public static final String PANDA  = "img/panda.png";
-    public static final String PENGUIN  = "img/penguin.png";
-    public static final String RABBIT  = "img/rabbit.png";
-    public static final String GIRAFFE  = "img/giraffe.png";
-    public static final String MONKEY  = "img/monkey.png";
-    public static final String PARROT  = "img/parrot.png";
-    public static final String PIG  = "img/pig.png";
-    public static final String SNAKE = "img/snake.png";
+    public final String TILESET = "tileset.png";
 
-    public static final String TEST_MODEL = "mdl/test.obj";
+    public final String SHITWADDUP = "img/shitwaddup.png";
+    public final String OBAMA  = "img/test.png";
+    public final String CHARIZARD  = "img/char.png";
+    public final String HIPPO  = "img/hippo.png";
+    public final String PANDA  = "img/panda.png";
+    public final String PENGUIN  = "img/penguin.png";
+    public final String RABBIT  = "img/rabbit.png";
+    public final String GIRAFFE  = "img/giraffe.png";
+    public final String MONKEY  = "img/monkey.png";
+    public final String PARROT  = "img/parrot.png";
+    public final String PIG  = "img/pig.png";
+    public final String SNAKE = "img/snake.png";
 
-    public static void load(){
+    public final String TEST_MODEL = "mdl/test.obj";
+
+    public void load(){
         if(manager!=null)manager.dispose();
         manager = new AssetManager();
 
@@ -52,13 +54,18 @@ public class Resources{
         manager.load(TEST_MODEL, Model.class);
     }
 
-    public static boolean isLoaded(){
+    public boolean isLoaded(){
         return manager.getProgress()>=1;
     }
 
-    public static void dispose(){
+    public void dispose(){
         manager.dispose();
         manager = null;
+    }
+
+    public static Resources getInstance(){
+        if(instance == null)instance = new Resources();
+        return instance;
     }
 
 }

@@ -79,7 +79,7 @@ public class MainGame extends Game {
     }
 
     public void setupAssets(){
-        Resources.load();
+        Resources.getInstance().load();
     }
 
     /**
@@ -386,12 +386,12 @@ public class MainGame extends Game {
 
     @Override
     public void pause(){
+        super.pause();
     }
 
     @Override
     public void resume() {
         super.resume();
-        //Resources.load();
     }
 
     @Override
@@ -408,6 +408,6 @@ public class MainGame extends Game {
         vBlurShader.dispose();
         Util.clearFonts();
 
-        Resources.dispose();
+        Resources.getInstance().dispose();
     }
 }
