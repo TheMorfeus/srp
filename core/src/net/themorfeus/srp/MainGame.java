@@ -88,12 +88,13 @@ public class MainGame extends Game {
     private void setupCamera(){
         //camera = new PerspectiveCamera(65, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        camera.near = 0;
+        camera.near = -20f;
         camera.far = 700f;
         camera.update();
 
         cameraController = new OrbitingCameraController(camera);
         cameraController.setAllowYawMovement(true);
+        cameraController.setAllowPitchMovement(true);
     }
 
     /**
@@ -181,7 +182,7 @@ public class MainGame extends Game {
         cameraController.update();
         camera.update();
 
-        fxaaShader.setAntialiasingFactor(cameraController.getOrbitRadius() / 13.75f);
+        //fxaaShader.setAntialiasingFactor(cameraController.getOrbitRadius() / 13.75f);
 
         /**
          * Rendering the game screen
@@ -385,18 +386,18 @@ public class MainGame extends Game {
 
     @Override
     public void pause(){
-        Util.clearFonts();
     }
 
     @Override
     public void resume() {
         super.resume();
-        Resources.load();
+        //Resources.load();
     }
 
     @Override
     public void dispose(){
         super.dispose();
+
         screenFrameBuffer.dispose();
         multipassFrameBuffer.dispose();
         stage.dispose();
@@ -405,6 +406,7 @@ public class MainGame extends Game {
         passthroughShader.dispose();
         hBlurShader.dispose();
         vBlurShader.dispose();
+        Util.clearFonts();
 
         Resources.dispose();
     }

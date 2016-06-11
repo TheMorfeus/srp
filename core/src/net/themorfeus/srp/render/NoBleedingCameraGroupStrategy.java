@@ -35,6 +35,7 @@ import com.badlogic.gdx.utils.Pool;
 /**
  * Camera group strategy that disables blending, which causes severe texture bleeding.
  * */
+
 public class NoBleedingCameraGroupStrategy extends CameraGroupStrategy{
 	public NoBleedingCameraGroupStrategy(Camera camera) {
 		super(camera);
@@ -46,6 +47,8 @@ public class NoBleedingCameraGroupStrategy extends CameraGroupStrategy{
 
 	@Override
 	public void beforeGroups () {
+        //TODO: depth-test causes severe bleeding between decals, but also allows for proper spatial arrangement. Decide which one is more important, or, even better, make them coexist
+        Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
 		getGroupShader(0).begin();
 		getGroupShader(0).setUniformMatrix("u_projectionViewMatrix", getCamera().combined);
 		getGroupShader(0).setUniformi("u_texture", 0);

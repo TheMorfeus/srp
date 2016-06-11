@@ -17,7 +17,7 @@ public class FXAAShader extends ShaderHelper{
 
     private Matrix4 projectionMatrix;
 
-    private float antialiasingFactor = 4;
+    private float antialiasingFactor = 10;
 
     public FXAAShader() {
         super("fxaa", "passthrough", "fxaa");
@@ -55,7 +55,7 @@ public class FXAAShader extends ShaderHelper{
 
         program.setUniformf(u_viewportInverse, 1f / Gdx.graphics.getWidth(), 1f / Gdx.graphics.getHeight());
         program.setUniformf(u_fxaa_reduce_min, (float) (1f / (Math.pow(antialiasingFactor, 8))));
-        program.setUniformf(u_fxaa_reduce_mul, 1f / antialiasingFactor);
+        program.setUniformf(u_fxaa_reduce_mul, 1/2f);
         program.setUniformf(u_fxaa_span_max, antialiasingFactor);
     }
 
