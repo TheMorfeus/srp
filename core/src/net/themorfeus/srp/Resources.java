@@ -12,7 +12,7 @@ public class Resources{
 
     private static Resources instance;
 
-    //technically this shoudln't be . But it should be managed well enough in MainGame class, that SRP can get away with it
+    //technically this shoudln't be . But it should be managed well enough in SuperRenderPass class, that SRP can get away with it
     public AssetManager manager;
 
     public final String TILESET = "tileset.png";

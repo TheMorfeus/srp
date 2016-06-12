@@ -6,8 +6,9 @@ import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import net.themorfeus.srp.game.WorldScreen;
+import net.themorfeus.srp.game.GameScreen;
 import net.themorfeus.srp.logic.LoadingScreen;
+import net.themorfeus.srp.logic.ScreenWithUI;
 import net.themorfeus.srp.render.DebugDisplay;
 import net.themorfeus.srp.render.FrameBufferManager;
 import net.themorfeus.srp.render.OrbitingCameraController;
@@ -16,20 +17,12 @@ import net.themorfeus.srp.render.shaders.*;
 /**
  * Main engine class
  * */
-public class MainGame extends Game {
+public class SuperRenderPass extends Game {
 
     /**
      * Temporary vector used for various calculations
      * */
     private Vector3 tempV3 = new Vector3();
-
-    private Camera camera;
-    private OrbitingCameraController cameraController;
-
-    /**
-     * Stage for UI related things
-     * */
-    private Stage stage;
 
     /**
      * Post-processing FrameBuffer
@@ -56,11 +49,6 @@ public class MainGame extends Game {
 
     private boolean fullscreen;
     private boolean vsync;
-
-    /**
-     * Debug variables
-     * */
-    private DebugDisplay debugDisplay;
     private boolean fxaa = true;
 
     /**
@@ -71,10 +59,7 @@ public class MainGame extends Game {
     @Override
     public void create () {
         setupAssets();
-        setupCamera();
-        setupRendering();
         setupPostProcessing();
-        setupInput();
         setupScreen();
     }
 
@@ -82,31 +67,6 @@ public class MainGame extends Game {
         Resources.getInstance().load();
     }
 
-    /**
-     * Sets up camera and its settings.
-     * */
-    private void setupCamera(){
-        //camera = new PerspectiveCamera(65, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        camera.near = -20f;
-        camera.far = 700f;
-        camera.update();
-
-        cameraController = new OrbitingCameraController(camera);
-        cameraController.setAllowYawMovement(true);
-        cameraController.setAllowPitchMovement(true);
-    }
-
-    /**
-     * Sets up rendering components - batches, and all alike;
-     * */
-    private void setupRendering(){
-        stage = new Stage();
-
-        stage.setViewport(new ScreenViewport());
-
-        debugDisplay = new DebugDisplay(stage);
-    }
 
     /**
      * Sets up post processing projection matrix, frame buffer, screen mesh, shader and its uniforms.
@@ -129,18 +89,6 @@ public class MainGame extends Game {
     }
 
     /**
-     * Sets up input
-     * */
-    private void setupInput(){
-        InputMultiplexer multiplexer = new InputMultiplexer();
-
-        multiplexer.addProcessor(stage);
-        multiplexer.addProcessor(cameraController);
-
-        Gdx.input.setInputProcessor(multiplexer);
-    }
-
-    /**
      * Sets up the game screen
      * */
     private void setupScreen(){
@@ -149,7 +97,7 @@ public class MainGame extends Game {
 
         System.out.println(this.getScreen());
 
-        /*new WorldScreen(this);
+        /*new GameScreen(this);
         this.setScreen(gameScreen);*/
     }
 
@@ -162,7 +110,7 @@ public class MainGame extends Game {
         //Loading screen is visible only once, so we can dispose of it now
         gameScreen.dispose();
 
-        this.gameScreen = new WorldScreen(this);
+        this.gameScreen = new GameScreen(this);
         this.setScreen(gameScreen);
     }
 
@@ -180,11 +128,7 @@ public class MainGame extends Game {
 
         tempV3.set(0, 0, 0);
 
-        debug();
         handleInput();
-
-        cameraController.update();
-        camera.update();
 
         //fxaaShader.setAntialiasingFactor(cameraController.getOrbitRadius() / 13.75f);
 
@@ -221,9 +165,7 @@ public class MainGame extends Game {
      * Renders UI
      * */
     private void renderUI(){
-        stage.getViewport().apply();
-        stage.act();
-        stage.draw();
+        if(this.screen!=null && this.screen instanceof ScreenWithUI) ((ScreenWithUI)this.screen).renderUI();
     }
 
     /**
@@ -296,12 +238,6 @@ public class MainGame extends Game {
      * Handles miscellaneous input
      * */
     private void handleInput(){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.Q)){
-            cameraController.animSmoothing--;
-        }else if(Gdx.input.isKeyJustPressed(Input.Keys.E)){
-            cameraController.animSmoothing++;
-        }
-
         if(Gdx.input.isKeyJustPressed(Input.Keys.F5)) {
             fullscreen = !fullscreen;
             setFullscreen(fullscreen);
@@ -337,20 +273,7 @@ public class MainGame extends Game {
         Gdx.graphics.setVSync(vsync);
     }
 
-    /**
-     * Various debug functions
-     * */
-    private void debug(){
-        Gdx.graphics.setTitle(Gdx.graphics.getFramesPerSecond() + " FPS, anim quality: " + ((int) Math.floor(cameraController.animSmoothing)));
-        debugDisplay.update("fps: " + Gdx.graphics.getFramesPerSecond() +
-                "\nvsync: " + (vsync ?"on":"off") +
-                "\nfxaa: " + (fxaa?"on":"off") +
-                "\ngpu: " + Gdx.gl.glGetString(GL20.GL_RENDERER));
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.P)){
-            fxaa = !fxaa;
-        }
-    }
 
     /**
      * Sets the clear color
@@ -361,19 +284,20 @@ public class MainGame extends Game {
         Gdx.gl.glClearColor(colors[0], colors[1], colors[2], 1);
     }
 
-    /**
-     * @return current camera
-     * */
-    public Camera getCamera(){
-        return camera;
+    public boolean isVsyncEnabled() {
+        return vsync;
     }
 
-    public Stage getStage() {
-        return stage;
+    public boolean isFullscreen() {
+        return fullscreen;
     }
 
-    public OrbitingCameraController getCameraController(){
-        return cameraController;
+    public void setFxaaEnabled(boolean fxaa){
+        this.fxaa = fxaa;
+    }
+
+    public boolean isFxaaEnabled() {
+        return fxaa;
     }
 
     @Override
@@ -381,12 +305,6 @@ public class MainGame extends Game {
         super.resize(width, height);
         screenFrameBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
         multipassFrameBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
-
-        camera.viewportWidth = width * .02f;
-        camera.viewportHeight = height* .02f;
-        camera.update();
-
-        stage.getViewport().update(width, height, true);
     }
 
     @Override
@@ -405,7 +323,6 @@ public class MainGame extends Game {
 
         screenFrameBuffer.dispose();
         multipassFrameBuffer.dispose();
-        stage.dispose();
         screenQuad.dispose();
         fxaaShader.dispose();
         passthroughShader.dispose();
