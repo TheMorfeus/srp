@@ -174,6 +174,10 @@ public class MainGame extends Game {
     public void render() {
         Gdx.gl.glEnable(GL20.GL_BLEND);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+
+        Gdx.gl20.glClearColor(0, 0, 0, 1);
+        Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+
         tempV3.set(0, 0, 0);
 
         debug();
@@ -227,8 +231,8 @@ public class MainGame extends Game {
      * */
     private void renderUIToFrameBuffer(FrameBuffer fbo){
         FrameBufferManager.begin(fbo);{
-            Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
             Gdx.gl20.glClearColor(0, 0, 0, 0);
+            Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
             renderUI();
         }FrameBufferManager.end();
     }
