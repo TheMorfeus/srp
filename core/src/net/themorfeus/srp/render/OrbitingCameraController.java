@@ -57,8 +57,8 @@ public class OrbitingCameraController extends InputAdapter{
     private float pitch = 60;
     private float actualPitch = 60;
 
-    private float minPitch = 10;
-    private float maxPitch = 80;
+    private float minPitch = 0;
+    private float maxPitch = 0;
 
 
     /**
@@ -95,8 +95,8 @@ public class OrbitingCameraController extends InputAdapter{
     public void update(){
         if(animSmoothing<1)animSmoothing = 1;
 
-        if(pitch<minPitch) pitch = minPitch;
-        if(pitch>maxPitch) pitch = maxPitch;
+        if(pitch<minPitch && minPitch!=0) pitch = minPitch;
+        if(pitch>maxPitch && maxPitch!=0) pitch = maxPitch;
 
         actualPivotPoint.x += (pivotPoint.x - actualPivotPoint.x)/animSmoothing;
         actualPivotPoint.y += (pivotPoint.y - actualPivotPoint.y)/animSmoothing;
