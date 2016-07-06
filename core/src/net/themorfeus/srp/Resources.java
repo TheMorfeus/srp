@@ -30,7 +30,7 @@ public class Resources{
     public final String PIG  = "img/pig.png";
     public final String SNAKE = "img/snake.png";
 
-    public final String TEST_MODEL = "mdl/test.obj";
+    public final String TEST_MODEL = "mdl/test2.obj";
 
     public void load(){
         if(manager!=null)manager.dispose();

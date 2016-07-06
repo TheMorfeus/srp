@@ -57,8 +57,8 @@ public class OrbitingCameraController extends InputAdapter{
     private float pitch = 60;
     private float actualPitch = 60;
 
-    private float minPitch = 0;
-    private float maxPitch = 0;
+    private float minPitch = 10;
+    private float maxPitch = 80;
 
 
     /**
@@ -206,6 +206,14 @@ public class OrbitingCameraController extends InputAdapter{
      * */
     public void setAllowYawMovement(boolean allow){
         this.allowYawMovement = allow;
+    }
+
+    public void setMinimalPitch(float minPitch){
+        this.minPitch = minPitch;
+    }
+
+    public void setMaximalPitch(float maxPitch){
+        this.maxPitch = maxPitch;
     }
 
     /**
