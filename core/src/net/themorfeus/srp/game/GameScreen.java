@@ -6,12 +6,18 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g3d.Environment;
+import com.badlogic.gdx.graphics.g3d.ModelBatch;
+import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
+import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import net.themorfeus.srp.SuperRenderPass;
+import net.themorfeus.srp.game.world.World;
 import net.themorfeus.srp.logic.ScreenWithUI;
 import net.themorfeus.srp.render.DebugDisplay;
 import net.themorfeus.srp.render.OrbitingCameraController;
+import net.themorfeus.srp.render.models.ModelBatchManager;
 
 
 public class GameScreen implements ScreenWithUI {
@@ -28,12 +34,30 @@ public class GameScreen implements ScreenWithUI {
      * */
     private Stage stage;
 
+    private ModelBatch modelBatch;
+    private ModelBatchManager modelBatchManager;
+
+
+    private World w;
+    private Environment environment;
+
 
     public GameScreen(SuperRenderPass engine){
         this.engineInstance = engine;
 
         setupCamera();
         setupRendering();
+        setupInput();
+        setupWorld();
+    }
+
+    private void setupWorld(){
+
+        this.environment = new Environment();
+        environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.6f, 0.6f, 0.6f, 1f));
+        environment.add(new DirectionalLight().set(.6f, .6f, .6f, -1f, -0.8f, -0.2f));
+
+        this.w = new World(this, environment, modelBatchManager);
     }
 
     /**
@@ -49,12 +73,17 @@ public class GameScreen implements ScreenWithUI {
         cameraController = new OrbitingCameraController(camera);
         cameraController.setAllowYawMovement(true);
         cameraController.setAllowPitchMovement(true);
+        cameraController.setMinimalPitch(0);
+        cameraController.setMaximalPitch(0);
     }
 
     private void setupRendering(){
         stage = new Stage();
         stage.setViewport(new ScreenViewport());
         debugDisplay = new DebugDisplay(stage);
+
+        modelBatch = new ModelBatch();
+        modelBatchManager = new ModelBatchManager(modelBatch);
     }
 
     /**
@@ -100,6 +129,10 @@ public class GameScreen implements ScreenWithUI {
         Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         engineInstance.glClearHexColor("#5253bc");
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+
+        w.render();
+
+        modelBatchManager.flush(camera);
     }
 
     @Override
