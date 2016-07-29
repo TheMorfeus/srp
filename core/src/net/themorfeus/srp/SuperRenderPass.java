@@ -136,6 +136,7 @@ public class SuperRenderPass extends Game {
          * Rendering the game screen
          * */
         renderGameToFrameBuffer(screenFrameBuffer);
+        //TODO blur shaders take up SHITTONS of powah. Drop frames significantly
         renderFrameBufferUsingShader(screenFrameBuffer, fxaa ? fxaaShader : null, hBlurShader, vBlurShader);
 
         /**
